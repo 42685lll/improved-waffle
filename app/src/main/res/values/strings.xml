@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">星野</string>
+    <string name="action_settings">设置</string>
+    <string name="title_activity_settings">星野设置</string>
+    <string name="hint_wallpaper">选择壁纸</string>
+    <string name="hint_voice">语音设置</string>
+    <string name="hint_model">模型设置</string>
+</resources>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>星野</title>
+    <style>
+        body { margin: 0; padding: 0; background: #1a1a2e; overflow: hidden; }
+        #wave { display: block; margin: 0 auto; }
+    </style>
+</head>
+<body>
+    <canvas id="wave" width="300" height="100"></canvas>
+    <script src="ai_core.js"></script>
+    <script src="bridge.js"></script>
+    <script>
+        // 原生 VAD 判停(静音500ms)后回调 JS：
+        function onUserEnd(utter) {
+            if (!utter || !window.HoshinoCore) return;
+            window.HoshinoCore.handleUserSpeechInput(utter).then(function(reply) {
+                console.log('AI Reply:', reply);
+            });
+        }
+    </script>
+</body>
+</html>
