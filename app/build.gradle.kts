@@ -1,18 +1,19 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
-    namespace = "com.example.starhoshino"
+    namespace = "com.starhoshino.app"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.starhoshino"
-        minSdk = 34
+        applicationId = "com.starhoshino.app"
+        minSdk = 24
         targetSdk = 35
         versionCode = 1
-        versionName = "0.1.0-alpha"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -24,11 +25,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // 首版用 debug 签名，避免构建失败
-            signingConfig = signingConfigs.getByName("debug")
-        }
-        debug {
-            isDebuggable = true
         }
     }
 
@@ -44,35 +40,31 @@ android {
     buildFeatures {
         viewBinding = true
     }
-
-    // 确保 assets 被正确包含
-    sourceSets {
-        getByName("main") {
-            assets {
-                srcDirs("src/main/assets")
-            }
-        }
-    }
 }
 
 dependencies {
-    // AndroidX 核心
+    // AndroidX
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.4")
 
-    // WorkManager（后台推送）
-    implementation("androidx.work:work-runtime-ktx:2.9.1")
-
-    // Room（温层持久化）
+    // Room
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
 
-    // Lifecycle
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
+    // WebView / 语音
+    implementation("androidx.webkit:webkit:1.11.0")
+
+    // 协程
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+
+    // Gson
+    implementation("com.google.code.gson:gson:2.11.0")
 
     // 测试
     testImplementation("junit:junit:4.13.2")
